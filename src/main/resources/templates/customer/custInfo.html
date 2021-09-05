@@ -95,16 +95,16 @@
             </div>
 
             <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="customer:custInfo:add">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="customer:add">
                     <i class="fa fa-plus"></i> 添加
                 </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="customer:custInfo:edit">
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="customer:edit">
                     <i class="fa fa-edit"></i> 修改
                 </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="customer:custInfo:remove">
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="customer:remove">
                     <i class="fa fa-remove"></i> 删除
                 </a>
-                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="customer:custInfo:export">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="customer:export">
                     <i class="fa fa-download"></i> 导出
                 </a>
             </div>
@@ -115,9 +115,9 @@
     </div>
     <th:block th:include="include :: footer" />
     <script th:inline="javascript">
-        var editFlag = [[${@permission.hasPermi('customer:custInfo:edit')}]];
-        var removeFlag = [[${@permission.hasPermi('customer:custInfo:remove')}]];
-        var prefix = ctx + "customer/custInfo";
+        var editFlag = [[${@permission.hasPermi('customer:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('customer:remove')}]];
+        var prefix = ctx + "customer";
 
         $(function() {
             var options = {

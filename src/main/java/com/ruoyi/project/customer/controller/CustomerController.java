@@ -34,7 +34,7 @@ import java.util.List;
  * @date 2021-07-11
  */
 @Controller
-@RequestMapping("/customer/custInfo")
+@RequestMapping("/customer")
 public class CustomerController extends BaseController {
     private String prefix = "customer";
 
@@ -44,16 +44,16 @@ public class CustomerController extends BaseController {
     @Autowired
     private IDetailsService detailsService;
 
-    @RequiresPermissions("customer:custInfo:view")
+    @RequiresPermissions("customer:view")
     @GetMapping()
     public String custInfo() {
-        return prefix + "/custInfo";
+        return prefix+"/custInfo";
     }
 
     /**
      * 查询客户信息管理列表
      */
-    @RequiresPermissions("customer:custInfo:list")
+    @RequiresPermissions("customer:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(Customer customer) {
@@ -70,14 +70,14 @@ public class CustomerController extends BaseController {
         }
         // TODO
         customer.setUserId(userId);
-        List<Customer> list = customerService.selectCustomerList(customer);
+         List<Customer> list = customerService.selectCustomerList(customer);
         return getDataTable(list);
     }
 
     /**
      * 导出客户信息管理列表
      */
-    @RequiresPermissions("customer:custInfo:export")
+    @RequiresPermissions("customer:export")
     @Log(title = "客户信息管理", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -98,7 +98,7 @@ public class CustomerController extends BaseController {
     /**
      * 新增保存客户信息管理
      */
-    @RequiresPermissions("customer:custInfo:add")
+    @RequiresPermissions("customer:add")
     @Log(title = "客户信息管理", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -180,7 +180,7 @@ public class CustomerController extends BaseController {
     /**
      * 修改保存客户信息管理
      */
-    @RequiresPermissions("customer:custInfo:edit")
+    @RequiresPermissions("customer:edit")
     @Log(title = "客户信息管理", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -191,7 +191,7 @@ public class CustomerController extends BaseController {
     /**
      * 删除客户信息管理
      */
-    @RequiresPermissions("customer:custInfo:remove")
+    @RequiresPermissions("customer:remove")
     @Log(title = "客户信息管理", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody

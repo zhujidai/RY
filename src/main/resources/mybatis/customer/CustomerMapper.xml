@@ -34,22 +34,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectCustomerVo"/>
         <where>  
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
-            <if test="sex != null  and sex != ''"> and sex = #{sex}</if>
             <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
             <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
             <if test="intention != null  and intention != ''"> and intention = #{intention}</if>
-            <if test="prepay != null "> and prepay = #{prepay}</if>
-            <if test="courseId != null "> and course_id = #{courseId}</if>
-            <if test="sourceId != null "> and source_id = #{sourceId}</if>
-            <if test="sheng != null  and sheng != ''"> and sheng = #{sheng}</if>
-            <if test="shi != null  and shi != ''"> and shi = #{shi}</if>
-            <if test="qv != null  and qv != ''"> and qv = #{qv}</if>
-            <if test="address != null  and address != ''"> and address = #{address}</if>
-            <if test="oaddress != null  and oaddress != ''"> and oaddress = #{oaddress}</if>
-            <if test="addDate != null "> and add_date = #{addDate}</if>
-            <if test="visitDate != null "> and visit_date = #{visitDate}</if>
-            <if test="nextDate != null "> and next_date = #{nextDate}</if>
-            <if test="counter != null "> and counter = #{counter}</if>
+            <if test="sourceId != null and sourceId != ''"> and source_id = #{sourceId}</if>
+            <if test="address != null  and address != ''"> and address like concat('%', #{address}, '%')</if>
         </where>
     </select>
     

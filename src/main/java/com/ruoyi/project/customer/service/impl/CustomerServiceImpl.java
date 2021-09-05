@@ -81,6 +81,8 @@ public class CustomerServiceImpl implements ICustomerService
         return customerMapper.deleteCustomerByIds(Convert.toStrArray(ids));
     }
 
+
+
     /**
      * 删除客户信息管理信息
      * 
