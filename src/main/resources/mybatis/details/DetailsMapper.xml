@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.details.mapper.DetailsMapper">
+    <resultMap type="Details" id="DetailsResult">
+        <result property="id"    column="id"    />
+        <result property="customerId"    column="customer_id"    />
+        <result property="customerName"    column="customer_name"    />
+        <result property="phone"    column="phone"    />
+        <result property="sex"    column="sex"    />
+        <result property="intentionId"    column="intention_id"    />
+        <result property="intentionName"    column="intention_name"    />
+        <result property="prepay"    column="prepay"    />
+        <result property="courseId"    column="course_id"    />
+        <result property="courseName"    column="course_name"    />
+        <result property="address"    column="address"    />
+        <result property="addDate"    column="add_date"    />
+        <result property="userId"    column="user_id"    />
+        <result property="userName"    column="user_name"    />
+        <result property="sourceId"    column="source_id"    />
+        <result property="sourceName"    column="source_name"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectDetailsVo">
+        select id, customer_id, customer_name, phone, sex, intention_id, intention_name, prepay, course_id, course_name, address, add_date, user_id, user_name, source_id, source_name, remark from details
+    </sql>
+
+    <select id="selectDetailsList" parameterType="Details" resultMap="DetailsResult">
+        <include refid="selectDetailsVo"/>
+        <where>  
+            <if test="customerId != null  and customerId != ''"> and customer_id = #{customerId}</if>
+            <if test="customerName != null  and customerName != ''"> and customer_name like concat('%', #{customerName}, '%')</if>
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="sex != null  and sex != ''"> and sex = #{sex}</if>
+            <if test="intentionId != null  and intentionId != ''"> and intention_id = #{intentionId}</if>
+            <if test="intentionName != null  and intentionName != ''"> and intention_name like concat('%', #{intentionName}, '%')</if>
+            <if test="prepay != null "> and prepay = #{prepay}</if>
+            <if test="courseId != null  and courseId != ''"> and course_id = #{courseId}</if>
+            <if test="courseName != null  and courseName != ''"> and course_name like concat('%', #{courseName}, '%')</if>
+            <if test="address != null  and address != ''"> and address = #{address}</if>
+            <if test="addDate != null "> and add_date = #{addDate}</if>
+            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="sourceId != null  and sourceId != ''"> and source_id = #{sourceId}</if>
+            <if test="sourceName != null  and sourceName != ''"> and source_name like concat('%', #{sourceName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectDetailsById" parameterType="String" resultMap="DetailsResult">
+        <include refid="selectDetailsVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertDetails" parameterType="Details">
+        insert into details
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="customerId != null">customer_id,</if>
+            <if test="customerName != null">customer_name,</if>
+            <if test="phone != null">phone,</if>
+            <if test="sex != null">sex,</if>
+            <if test="intentionId != null">intention_id,</if>
+            <if test="intentionName != null">intention_name,</if>
+            <if test="prepay != null">prepay,</if>
+            <if test="courseId != null">course_id,</if>
+            <if test="courseName != null">course_name,</if>
+            <if test="address != null">address,</if>
+            <if test="addDate != null">add_date,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="userName != null">user_name,</if>
+            <if test="sourceId != null">source_id,</if>
+            <if test="sourceName != null">source_name,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="customerName != null">#{customerName},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="sex != null">#{sex},</if>
+            <if test="intentionId != null">#{intentionId},</if>
+            <if test="intentionName != null">#{intentionName},</if>
+            <if test="prepay != null">#{prepay},</if>
+            <if test="courseId != null">#{courseId},</if>
+            <if test="courseName != null">#{courseName},</if>
+            <if test="address != null">#{address},</if>
+            <if test="addDate != null">#{addDate},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="sourceId != null">#{sourceId},</if>
+            <if test="sourceName != null">#{sourceName},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDetails" parameterType="Details">
+        update details
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="customerId != null">customer_id = #{customerId},</if>
+            <if test="customerName != null">customer_name = #{customerName},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="intentionId != null">intention_id = #{intentionId},</if>
+            <if test="intentionName != null">intention_name = #{intentionName},</if>
+            <if test="prepay != null">prepay = #{prepay},</if>
+            <if test="courseId != null">course_id = #{courseId},</if>
+            <if test="courseName != null">course_name = #{courseName},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="addDate != null">add_date = #{addDate},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="sourceId != null">source_id = #{sourceId},</if>
+            <if test="sourceName != null">source_name = #{sourceName},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDetailsById" parameterType="String">
+        delete from details where id = #{id}
+    </delete>
+
+    <delete id="deleteDetailsByIds" parameterType="String">
+        delete from details where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.details.mapper.DetailsMapper">
+    <resultMap type="Details" id="DetailsResult">
+        <result property="id"    column="id"    />
+        <result property="customerId"    column="customer_id"    />
+        <result property="customerName"    column="customer_name"    />
+        <result property="phone"    column="phone"    />
+        <result property="sex"    column="sex"    />
+        <result property="intention"    column="intention"    />
+        <result property="prepay"    column="prepay"    />
+        <result property="courseId"    column="course_id"    />
+        <result property="address"    column="address"    />
+        <result property="addDate"    column="add_date"    />
+        <result property="userId"    column="user_id"    />
+        <result property="sourceName"    column="source_name"    />
+        <result property="userName"    column="user_name"    />
+        <result property="operation"    column="operation"    />
+    </resultMap>
+
+    <sql id="selectDetailsVo">
+        select id, customer_id, customer_name, phone, sex, intention, prepay, course_id, address, add_date, user_id, source_name, user_name, operation from details
+    </sql>
+
+    <!--<select id="selectDetailsList" parameterType="Details" resultMap="DetailsResult">
+        <include refid="selectDetailsVo"/>
+        <where>
+            <if test="customerId != null  and customerId != ''"> and customer_id = #{customerId}</if>
+            <if test="customerName != null  and customerName != ''"> and customer_name like concat('%', #{customerName}, '%')</if>
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="sex != null  and sex != ''"> and sex = #{sex}</if>
+            <if test="intention != null  and intention != ''"> and intention = #{intention}</if>
+            <if test="prepay != null "> and prepay = #{prepay}</if>
+            <if test="courseId != null  and courseId != ''"> and course_id = #{courseId}</if>
+            <if test="address != null  and address != ''"> and address = #{address}</if>
+            <if test="addDate != null "> and add_date = #{addDate}</if>
+            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+            <if test="sourceName != null  and sourceName != ''"> and source_name like concat('%', #{sourceName}, '%')</if>
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="operation != null  and operation != ''"> and operation = #{operation}</if>
+        </where>
+    </select>-->
+
+    <select id="selectDetailsList" parameterType="Details" resultMap="DetailsResult">
+        select
+           id, customer_id, customer_name, phone,  dict_sex.dict_label sex, dict_intention.dict_label intention, prepay, dict_course.dict_label  course_id, address, add_date, user_id, dict_source.dict_label  source_name, user_name, operation
+        from details de
+
+        LEFT JOIN (SELECT * from sys_dict_data where dict_type = 'sys_user_sex') dict_sex
+        on de.sex = dict_sex.dict_value
+
+        LEFT JOIN (SELECT * from sys_dict_data where dict_type = 'sys_intention') dict_intention
+        on de.intention = dict_intention.dict_value
+
+        LEFT JOIN (SELECT * from sys_dict_data where dict_type = 'sys_course') dict_course
+        on de.course_id = dict_course.dict_value
+
+        LEFT JOIN (SELECT * from sys_dict_data where dict_type = 'sys_source') dict_source
+        on de.source_name = dict_source.dict_value
+
+        <where>
+            <if test="customerId != null  and customerId != ''"> and customer_id = #{customerId}</if>
+        </where>
+    </select>
+
+
+    
+    <select id="selectDetailsById" parameterType="String" resultMap="DetailsResult">
+        <include refid="selectDetailsVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertDetails" parameterType="Details">
+        insert into details
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="customerId != null">customer_id,</if>
+            <if test="customerName != null">customer_name,</if>
+            <if test="phone != null">phone,</if>
+            <if test="sex != null">sex,</if>
+            <if test="intention != null">intention,</if>
+            <if test="prepay != null">prepay,</if>
+            <if test="courseId != null">course_id,</if>
+            <if test="address != null">address,</if>
+            <if test="addDate != null">add_date,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="sourceName != null">source_name,</if>
+            <if test="userName != null">user_name,</if>
+            <if test="operation != null">operation,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="customerName != null">#{customerName},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="sex != null">#{sex},</if>
+            <if test="intention != null">#{intention},</if>
+            <if test="prepay != null">#{prepay},</if>
+            <if test="courseId != null">#{courseId},</if>
+            <if test="address != null">#{address},</if>
+            <if test="addDate != null">#{addDate},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="sourceName != null">#{sourceName},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="operation != null">#{operation},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDetails" parameterType="Details">
+        update details
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="customerId != null">customer_id = #{customerId},</if>
+            <if test="customerName != null">customer_name = #{customerName},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="intention != null">intention = #{intention},</if>
+            <if test="prepay != null">prepay = #{prepay},</if>
+            <if test="courseId != null">course_id = #{courseId},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="addDate != null">add_date = #{addDate},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="sourceName != null">source_name = #{sourceName},</if>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="operation != null">operation = #{operation},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDetailsById" parameterType="String">
+        delete from details where id = #{id}
+    </delete>
+
+    <delete id="deleteDetailsByIds" parameterType="String">
+        delete from details where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectDetailsByCustId" parameterType="string" resultType="Details">
+        select * from details where customer_id = #{customerId}
+    </select>
+</mapper>

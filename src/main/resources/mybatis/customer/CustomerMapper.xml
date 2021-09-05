@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.customer.mapper.CustomerMapper">
+    
+    <resultMap type="Customer" id="CustomerResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="sex"    column="sex"    />
+        <result property="phone"    column="phone"    />
+        <result property="userId"    column="user_id"    />
+        <result property="intention"    column="intention"    />
+        <result property="prepay"    column="prepay"    />
+        <result property="courseId"    column="course_id"    />
+        <result property="sourceId"    column="source_id"    />
+        <result property="sheng"    column="sheng"    />
+        <result property="shi"    column="shi"    />
+        <result property="qv"    column="qv"    />
+        <result property="address"    column="address"    />
+        <result property="oaddress"    column="oaddress"    />
+        <result property="addDate"    column="add_date"    />
+        <result property="visitDate"    column="visit_date"    />
+        <result property="nextDate"    column="next_date"    />
+        <result property="counter"    column="counter"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectCustomerVo">
+        select id, name, sex, phone, user_id, intention, prepay, course_id, source_id, sheng, shi, qv, address, oaddress, add_date, visit_date, next_date, counter, remark from customer
+    </sql>
+
+    <select id="selectCustomerList" parameterType="Customer" resultMap="CustomerResult">
+        <include refid="selectCustomerVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="sex != null  and sex != ''"> and sex = #{sex}</if>
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+            <if test="intention != null  and intention != ''"> and intention = #{intention}</if>
+            <if test="prepay != null "> and prepay = #{prepay}</if>
+            <if test="courseId != null "> and course_id = #{courseId}</if>
+            <if test="sourceId != null "> and source_id = #{sourceId}</if>
+            <if test="sheng != null  and sheng != ''"> and sheng = #{sheng}</if>
+            <if test="shi != null  and shi != ''"> and shi = #{shi}</if>
+            <if test="qv != null  and qv != ''"> and qv = #{qv}</if>
+            <if test="address != null  and address != ''"> and address = #{address}</if>
+            <if test="oaddress != null  and oaddress != ''"> and oaddress = #{oaddress}</if>
+            <if test="addDate != null "> and add_date = #{addDate}</if>
+            <if test="visitDate != null "> and visit_date = #{visitDate}</if>
+            <if test="nextDate != null "> and next_date = #{nextDate}</if>
+            <if test="counter != null "> and counter = #{counter}</if>
+        </where>
+    </select>
+    
+    <select id="selectCustomerById" parameterType="String" resultMap="CustomerResult">
+        <include refid="selectCustomerVo"/>
+        where id = #{id}
+    </select>
+
+
+    <insert id="insertCustomer" parameterType="Customer">
+        insert into customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="sex != null">sex,</if>
+            <if test="phone != null">phone,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="intention != null">intention,</if>
+            <if test="prepay != null">prepay,</if>
+            <if test="courseId != null">course_id,</if>
+            <if test="sourceId != null">source_id,</if>
+            <if test="sheng != null">sheng,</if>
+            <if test="shi != null">shi,</if>
+            <if test="qv != null">qv,</if>
+            <if test="address != null">address,</if>
+            <if test="oaddress != null">oaddress,</if>
+            <if test="addDate != null">add_date,</if>
+            <if test="visitDate != null">visit_date,</if>
+            <if test="nextDate != null">next_date,</if>
+            <if test="counter != null">counter,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="sex != null">#{sex},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="intention != null">#{intention},</if>
+            <if test="prepay != null">#{prepay},</if>
+            <if test="courseId != null">#{courseId},</if>
+            <if test="sourceId != null">#{sourceId},</if>
+            <if test="sheng != null">#{sheng},</if>
+            <if test="shi != null">#{shi},</if>
+            <if test="qv != null">#{qv},</if>
+            <if test="address != null">#{address},</if>
+            <if test="oaddress != null">#{oaddress},</if>
+            <if test="addDate != null">#{addDate},</if>
+            <if test="visitDate != null">#{visitDate},</if>
+            <if test="nextDate != null">#{nextDate},</if>
+            <if test="counter != null">#{counter},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCustomer" parameterType="Customer">
+        update customer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="intention != null">intention = #{intention},</if>
+            <if test="prepay != null">prepay = #{prepay},</if>
+            <if test="courseId != null">course_id = #{courseId},</if>
+            <if test="sourceId != null">source_id = #{sourceId},</if>
+            <if test="sheng != null">sheng = #{sheng},</if>
+            <if test="shi != null">shi = #{shi},</if>
+            <if test="qv != null">qv = #{qv},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="oaddress != null">oaddress = #{oaddress},</if>
+            <if test="addDate != null">add_date = #{addDate},</if>
+            <if test="visitDate != null">visit_date = #{visitDate},</if>
+            <if test="nextDate != null">next_date = #{nextDate},</if>
+            <if test="counter != null">counter = #{counter},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCustomerById" parameterType="String">
+        delete from customer where id = #{id}
+    </delete>
+
+    <delete id="deleteCustomerByIds" parameterType="String">
+        delete from customer where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <select id="getQvName" parameterType="string" resultType="String">
+        select dict_label from sys_dict_data where dict_type = 'sys_shanghai' and dict_value = #{qvId}
+    </select>
+    <select id="getSexValue" parameterType="string" resultType="String">
+        SELECT dict_label sexVal FROM `sys_dict_data` where dict_type='sys_user_sex' and dict_value = #{sex}
+    </select>
+    <select id="getIntentionVal" parameterType="string" resultType="String">
+        SELECT dict_label FROM `sys_dict_data` where dict_type='sys_intention' and dict_value = #{intention}
+    </select>
+    <select id="getCourseVal" parameterType="string" resultType="String">
+        SELECT dict_label FROM `sys_dict_data` where dict_type='sys_course' and dict_value = #{courseId}
+    </select>
+    <select id="getSourceVal" parameterType="string" resultType="String">
+        SELECT dict_label FROM `sys_dict_data` where dict_type='sys_source' and dict_value = #{sourceId}
+    </select>
+
+</mapper>
