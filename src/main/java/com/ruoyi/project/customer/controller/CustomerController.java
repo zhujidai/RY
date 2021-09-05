@@ -50,6 +50,12 @@ public class CustomerController extends BaseController {
         return prefix+"/custInfo";
     }
 
+    @RequiresPermissions("customer:view")
+    @GetMapping("/today")
+    public String todayCustInfo() {
+        return prefix+"/custInfo/todayCustInfo";
+    }
+
     /**
      * 查询客户信息管理列表
      */
