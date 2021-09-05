@@ -70,5 +70,5 @@ public interface ICustomerService
 
     public String getSourceVal(String sourceId);
 
-    public List<Customer> selectCustomerList(Long userId);
+    public List<Customer> selectCustomerList(Customer customer);
 }

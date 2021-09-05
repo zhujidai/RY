@@ -68,7 +68,8 @@ public class CustomerController extends BaseController {
                 }
             }
         }
-        List<Customer> list = customerService.selectCustomerList(userId);
+        customer.setUserId(userId);
+        List<Customer> list = customerService.selectCustomerList(customer);
         return getDataTable(list);
     }
 

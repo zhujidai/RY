@@ -44,6 +44,7 @@ public class CustomerServiceImpl implements ICustomerService
         return customerMapper.selectCustomerList(customer);
     }
 
+
     /**
      * 新增客户信息管理
      * 
@@ -86,11 +87,11 @@ public class CustomerServiceImpl implements ICustomerService
      * @param id 客户信息管理ID
      * @return 结果
      */
-    @Override
-    public int deleteCustomerById(String id)
-    {
-        return customerMapper.deleteCustomerById(id);
-    }
+//    @Override
+//    public int deleteCustomerById(String id)
+//    {
+//        return customerMapper.deleteCustomerById(id);
+//    }
 
     @Override
     public String getQvName(String qvId) {
@@ -117,8 +118,4 @@ public class CustomerServiceImpl implements ICustomerService
         return customerMapper.getSourceVal(sourceId);
     }
 
-    @Override
-    public List<Customer> selectCustomerList(Long userId) {
-        return customerMapper.selectCustomerList(userId);
-    }
 }

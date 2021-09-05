@@ -70,4 +70,6 @@ public interface CustomerMapper
     public String getSourceVal(String sourceId);
 
     public List<Customer> selectCustomerList(Long userId);
+
+    public int updateCustomer(Customer customer);
 }
