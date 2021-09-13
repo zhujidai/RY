@@ -1,6 +1,7 @@
 package com.ruoyi.project.details.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,8 @@ public class DetailsServiceImpl implements IDetailsService {
 //     * @return 【请填写功能名称】
 //     */
     @Override
-    public List<Details> selectDetailsList(Details details) {
-        return detailsMapper.selectDetailsList(details);
+    public List<Map<String,String>> selectDetailsList(String customerId) {
+        return detailsMapper.selectDetailsList(customerId);
     }
 
 //    public List<Details> selectDetailsList(String customerId) {
@@ -92,7 +93,7 @@ public class DetailsServiceImpl implements IDetailsService {
     }
 
     @Override
-    public List<Details> selectDetailsByCustId(String customerId) {
+    public List<Map<String,String>> selectDetailsByCustId(String customerId) {
         return detailsMapper.selectDetailsByCustId(customerId);
     }
 }

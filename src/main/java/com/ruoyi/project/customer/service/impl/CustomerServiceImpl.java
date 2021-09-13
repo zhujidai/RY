@@ -39,9 +39,13 @@ public class CustomerServiceImpl implements ICustomerService
      * @return 客户信息管理
      */
     @Override
-    public List<Customer> selectCustomerList(Customer customer)
-    {
+    public List<Customer> selectCustomerList(Customer customer){
         return customerMapper.selectCustomerList(customer);
+    }
+
+    @Override
+    public List<Customer> selectCustomerTodayList(Customer customer){
+        return customerMapper.selectCustomerTodayList(customer);
     }
 
 

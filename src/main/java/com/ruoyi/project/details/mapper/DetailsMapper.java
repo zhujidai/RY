@@ -1,6 +1,7 @@
 package com.ruoyi.project.details.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ruoyi.project.details.domain.Details;
 
@@ -25,7 +26,7 @@ public interface DetailsMapper {
      * @param details 【请填写功能名称】
      * @return 【请填写功能名称】集合
      */
-    public List<Details> selectDetailsList(Details details);
+    public List<Map<String,String>> selectDetailsList(String customerId);
 //    public List<Details> selectDetailsList(String customerId);
 
     /**
@@ -60,5 +61,5 @@ public interface DetailsMapper {
      */
     public int deleteDetailsByIds(String[] ids);
 
-    public List<Details> selectDetailsByCustId(String customerId);
+    public List<Map<String,String>> selectDetailsByCustId(String customerId);
 }

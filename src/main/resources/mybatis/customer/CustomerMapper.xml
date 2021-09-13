@@ -41,6 +41,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="address != null  and address != ''"> and address like concat('%', #{address}, '%')</if>
         </where>
     </select>
+
+    <select id="selectCustomerTodayList" parameterType="Customer" resultMap="CustomerResult">
+        <include refid="selectCustomerVo"/>
+        <where>
+            <if test="1==1">
+                and DATEDIFF(NOW(),next_date) >= 0
+            </if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+            <if test="intention != null  and intention != ''"> and intention = #{intention}</if>
+            <if test="sourceId != null and sourceId != ''"> and source_id = #{sourceId}</if>
+            <if test="address != null  and address != ''"> and address like concat('%', #{address}, '%')</if>
+        </where>
+    </select>
     
     <select id="selectCustomerById" parameterType="String" resultMap="CustomerResult">
         <include refid="selectCustomerVo"/>

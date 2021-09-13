@@ -53,7 +53,7 @@ public class CustomerController extends BaseController {
     @RequiresPermissions("customer:view")
     @GetMapping("/today")
     public String todayCustInfo() {
-        return prefix+"/custInfo/todayCustInfo";
+        return prefix+"/todayCustInfo";
     }
 
     /**
@@ -77,6 +77,26 @@ public class CustomerController extends BaseController {
         // TODO
         customer.setUserId(userId);
          List<Customer> list = customerService.selectCustomerList(customer);
+        return getDataTable(list);
+    }
+
+    @PostMapping("/todayList")
+    @ResponseBody
+    public TableDataInfo todayList(Customer customer) {
+        startPage();
+        User sysUser = ShiroUtils.getSysUser();
+        Long userId = sysUser.getUserId();
+        List<Role> roleLst = sysUser.getRoles();
+        if (roleLst != null && roleLst.size() > 0) {
+            for (Role role : roleLst) {
+                if (role.getRoleId() == 1) {
+                    userId = null;
+                }
+            }
+        }
+        // TODO
+        customer.setUserId(userId);
+        List<Customer> list = customerService.selectCustomerTodayList(customer);
         return getDataTable(list);
     }
 

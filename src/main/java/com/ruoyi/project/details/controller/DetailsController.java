@@ -1,6 +1,7 @@
 package com.ruoyi.project.details.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ruoyi.common.utils.security.ShiroUtils;
 import com.ruoyi.project.system.user.domain.User;
@@ -48,13 +49,10 @@ public class DetailsController extends BaseController {
     @RequiresPermissions("system:details:list")
     @PostMapping("/list")
     @ResponseBody
-    public TableDataInfo list(Details details) {
+    public TableDataInfo list(String customerId) {
         startPage();
-        User user = ShiroUtils.getSysUser();
-        if (user != null && !"admin".equals(user.getLoginName())) {
-            details.setUserId(user.getUserId());
-        }
-        List<Details> list = detailsService.selectDetailsList(details);
+        List<Map<String,String>> list = detailsService.selectDetailsList(customerId);
+        System.out.println("list = " + list);
         return getDataTable(list);
     }
 
@@ -64,29 +62,28 @@ public class DetailsController extends BaseController {
     @RequiresPermissions("system:details:list")
     @GetMapping("/details/{customerId}")
     public String detail(@PathVariable("customerId") String customerId, ModelMap mmap) {
-        System.out.println("daniel hello .......................................................................");
-        List<Details> details = detailsService.selectDetailsByCustId(customerId);
-        System.out.println(details);
-        mmap.put("dict", detailsService.selectDetailsByCustId(customerId));
+//        List<Map<String,String>> details = detailsService.selectDetailsByCustId(customerId);
+//        System.out.println(details);
+        mmap.put("customerId", customerId);
         return "system/details/details";
     }
 
     /**
      * 导出【请填写功能名称】列表
      */
-    @RequiresPermissions("system:details:export")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    @ResponseBody
-    public AjaxResult export(Details details) {
-        User user = ShiroUtils.getSysUser();
-        if (user != null && !"admin".equals(user.getLoginName())) {
-            details.setUserId(user.getUserId());
-        }
-        List<Details> list = detailsService.selectDetailsList(details);
-        ExcelUtil<Details> util = new ExcelUtil<Details>(Details.class);
-        return util.exportExcel(list, "【请填写功能名称】数据");
-    }
+//    @RequiresPermissions("system:details:export")
+//    @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
+//    @PostMapping("/export")
+//    @ResponseBody
+//    public AjaxResult export(Details details) {
+//        User user = ShiroUtils.getSysUser();
+//        if (user != null && !"admin".equals(user.getLoginName())) {
+//            details.setUserId(user.getUserId());
+//        }
+//        List<Details> list = detailsService.selectDetailsList(details);
+//        ExcelUtil<Details> util = new ExcelUtil<Details>(Details.class);
+//        return util.exportExcel(list, "【请填写功能名称】数据");
+//    }
 
     /**
      * 新增【请填写功能名称】

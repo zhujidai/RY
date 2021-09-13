@@ -121,7 +121,7 @@
 
         $(function() {
             var options = {
-                url: prefix + "/list",
+                url: prefix + "/todayList",
                 createUrl: prefix + "/add",
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
@@ -215,7 +215,7 @@
 
         function detail(dictId) {
             var url = 'system/details/details/' + dictId;
-            $.modal.openTab("回访详情", url);
+            $.modal.openTab("字典数据", url);
         }
     </script>
 </body>

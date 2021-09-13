@@ -24,28 +24,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectDetailsVo">
-        select id, customer_id, customer_name, phone, sex, intention_id, intention_name, prepay, course_id, course_name, address, add_date, user_id, user_name, source_id, source_name, remark from details
+        select id, customer_id, customer_name, phone, sex, intention_id, intention_name, prepay, course_id, course_name, address, add_date, user_id, user_name, source_id, source_name, remark from details where 1=1
     </sql>
 
-    <select id="selectDetailsList" parameterType="Details" resultMap="DetailsResult">
+    <select id="selectDetailsList" parameterType="string" resultType="java.util.Map">
         <include refid="selectDetailsVo"/>
-        <where>  
-            <if test="customerId != null  and customerId != ''"> and customer_id = #{customerId}</if>
-            <if test="customerName != null  and customerName != ''"> and customer_name like concat('%', #{customerName}, '%')</if>
-            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
-            <if test="sex != null  and sex != ''"> and sex = #{sex}</if>
-            <if test="intentionId != null  and intentionId != ''"> and intention_id = #{intentionId}</if>
-            <if test="intentionName != null  and intentionName != ''"> and intention_name like concat('%', #{intentionName}, '%')</if>
-            <if test="prepay != null "> and prepay = #{prepay}</if>
-            <if test="courseId != null  and courseId != ''"> and course_id = #{courseId}</if>
-            <if test="courseName != null  and courseName != ''"> and course_name like concat('%', #{courseName}, '%')</if>
-            <if test="address != null  and address != ''"> and address = #{address}</if>
-            <if test="addDate != null "> and add_date = #{addDate}</if>
-            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
-            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
-            <if test="sourceId != null  and sourceId != ''"> and source_id = #{sourceId}</if>
-            <if test="sourceName != null  and sourceName != ''"> and source_name like concat('%', #{sourceName}, '%')</if>
-        </where>
+        <if test="customerId != null  and customerId != ''">
+            and customer_id = #{customerId}
+        </if>
     </select>
     
     <select id="selectDetailsById" parameterType="String" resultMap="DetailsResult">
@@ -129,4 +115,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
+    <select id="selectDetailsByCustId" parameterType="string" resultType="java.util.Map">
+        SELECT * from details where customer_id = #{customerId}
+    </select>
 </mapper>

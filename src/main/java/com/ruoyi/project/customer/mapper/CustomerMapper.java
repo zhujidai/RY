@@ -27,6 +27,8 @@ public interface CustomerMapper
      */
     public List<Customer> selectCustomerList(Customer customer);
 
+    public List<Customer> selectCustomerTodayList(Customer customer);
+
     /**
      * 新增客户信息管理
      * 

@@ -7,75 +7,75 @@
      <div class="container-div">
         <div class="row">
             <div class="col-sm-12 search-collapse">
-                <form id="formId">
-                    <div class="select-list">
-                        <ul>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="customerId"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="customerName"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="phone"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <select name="sex">
-                                    <option value="">所有</option>
-                                    <option value="-1">代码生成请选择字典属性</option>
-                                </select>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="intentionId"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="intentionName"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="prepay"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="courseName"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="address"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" class="time-input" placeholder="请选择${comment}" name="addDate"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="userId"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="userName"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="sourceId"/>
-                            </li>
-                            <li>
-                                <label>${comment}：</label>
-                                <input type="text" name="sourceName"/>
-                            </li>
-                            <li>
-                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
-                            </li>
-                        </ul>
-                    </div>
-                </form>
+<!--                <form id="formId">-->
+<!--                    <div class="select-list">-->
+<!--                        <ul>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="customerId"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="customerName"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="phone"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <select name="sex">-->
+<!--                                    <option value="">所有</option>-->
+<!--                                    <option value="-1">代码生成请选择字典属性</option>-->
+<!--                                </select>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="intentionId"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="intentionName"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="prepay"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="courseName"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="address"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" class="time-input" placeholder="请选择${comment}" name="addDate"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="userId"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="userName"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="sourceId"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>${comment}：</label>-->
+<!--                                <input type="text" name="sourceName"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>-->
+<!--                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </form>-->
             </div>
 
             <div class="btn-group-sm" id="toolbar" role="group">
@@ -105,83 +105,52 @@
 
         $(function() {
             var options = {
-                url: prefix + "/list",
+                // url: prefix + "/list?customerId=d0b64095f38c4081acdc37d1672079b6", //${@customerId},
+                url: prefix + "/list?customerId="+[[${customerId}]],
                 createUrl: prefix + "/add",
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
                 modalName: "【请填写功能名称】",
-                columns: [{
-                    checkbox: true
-                },
-                {
-                    field: 'id',
-                    title: ' ',
-                    visible: false
-                },
-                {
-                    field: 'customerId',
-                    title: ' '
-                },
                 {
                     field: 'customerName',
-                    title: ' '
+                    title: '客户名称'
                 },
                 {
                     field: 'phone',
-                    title: ' '
+                    title: '手机号'
                 },
                 {
                     field: 'sex',
-                    title: ' '
-                },
-                {
-                    field: 'intentionId',
-                    title: ' '
-                },
-                {
-                    field: 'intentionName',
-                    title: ' '
-                },
-                {
-                    field: 'prepay',
-                    title: ' '
-                },
-                {
-                    field: 'courseId',
-                    title: ' '
-                },
-                {
-                    field: 'courseName',
-                    title: ' '
-                },
-                {
-                    field: 'address',
-                    title: ' '
-                },
-                {
-                    field: 'addDate',
-                    title: ' '
-                },
-                {
-                    field: 'userId',
-                    title: ' '
+                    title: '性别'
                 },
                 {
                     field: 'userName',
-                    title: ' '
+                        title: ' '
                 },
                 {
-                    field: 'sourceId',
-                    title: ' '
+                    field: 'intentionName',
+                    title: '意向'
+                },
+                {
+                    field: 'prepay',
+                    title: '预付'
+                },
+                {
+                    field: 'courseName',
+                    title: '咨询课程'
+                },
+                {
+                    field: 'address',
+                    title: '地址'
                 },
                 {
                     field: 'sourceName',
-                    title: ' '
+                    title: '客户来源'
                 },
                 {
                     field: 'remark',
-                    title: ' '
+                    title: '备注'
                 },
                 {
                     title: '操作',
